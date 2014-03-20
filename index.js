@@ -33,7 +33,7 @@ app.get('/', function(req, res) {
 app.get('/red-pills/:id', function (request, response) {
     var taskId = request.params.id;
     try {
-        response.json({'pill':'sweetness'});
+        get("532ae43f6147350200ea470a");
     } catch (exeception) {
         response.send(404);
     }     
@@ -42,7 +42,7 @@ app.get('/red-pills/:id', function (request, response) {
 
 /**
  * HTTP POST /pills/
- * Body Param: the JSON task you want to create
+ * Body Param: the JSON pill you want to create
  * Returns: 200 HTTP code
  */
 app.post('/pills', function (request, response) {
@@ -60,6 +60,17 @@ function ins(pill) {
 		});
 	  });
 	});
+}
+//oid = "532ae43f6147350200ea470a"
+function get(oid) {
+{
+	mongo.Db.connect(mongoUri, function (err, db) {
+	db.collection('pills', function(er, collection) {
+			collection.findOne({"_id": {"$oid": id}}, function(err, document) {
+				response.send(document);
+			});		
+		});
+	});    
 }
 
 /******************************** start server ********************************/
