@@ -31,9 +31,9 @@ app.get('/', function(req, res) {
  * Error: 404 HTTP code if the pill doesn't exists
  */
 app.get('/red-pills/:id', function (request, response) {
-    var taskId = request.params.id;
+    var pillId = request.params.id;
     try {
-        get("532ae43f6147350200ea470a");
+        get(pillId);
     } catch (exeception) {
         response.send(404);
     }     
@@ -62,7 +62,7 @@ function ins(pill) {
 	});
 }
 //oid = "532ae43f6147350200ea470a"
-function getty(oid) {
+function get(oid) {
 	mongo.Db.connect(mongoUri, function (err, db) {
 		db.collection('pills', function(er, collection) {
 			collection.findOne({"_id": {"$oid": oid}}, function(err, document) {
