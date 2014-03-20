@@ -32,8 +32,8 @@ app.get('/', function(req, res) {
  */
 app.get('/red-pills/:id', function (request, response) {
     var pillId = request.params.id;
-    try {
-        get(pillId);
+    try {		
+        get(pillId, response);
     } catch (exeception) {
         response.send(404);
     }     
@@ -62,7 +62,7 @@ function ins(pill) {
 	});
 }
 //oid = "532ae43f6147350200ea470a"
-function get(oid) {
+function get(oid, response) {
 	mongo.Db.connect(mongoUri, function (err, db) {
 		db.collection('pills', function(er, collection) {
 			collection.findOne({"_id": {"$oid": oid}}, function(err, document) {
