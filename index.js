@@ -62,11 +62,10 @@ function ins(pill) {
 	});
 }
 //oid = "532ae43f6147350200ea470a"
-function get(oid) {
-{
+function getty(oid) {
 	mongo.Db.connect(mongoUri, function (err, db) {
-	db.collection('pills', function(er, collection) {
-			collection.findOne({"_id": {"$oid": id}}, function(err, document) {
+		db.collection('pills', function(er, collection) {
+			collection.findOne({"_id": {"$oid": oid}}, function(err, document) {
 				response.send(document);
 			});		
 		});
